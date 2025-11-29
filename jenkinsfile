@@ -4,13 +4,13 @@ pipeline {
         stage('checkout') {
             steps {
                 checkout([
-                  $class: 'GitSCM',
-                  branches: [[name: '*/main']],
-                  userRemoteConfigs: [[
+                    $class: 'GitSCM'
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs : [
                         url: 'https://github.com/rbsanketh/student-app.git',
                         credentialsId: 'github-pass'
-    ]]
-])
+                    ]
+                ])
             }
         }
         stage('Build'){
@@ -34,6 +34,3 @@ pipeline {
 
     }
 }
-
-
-
