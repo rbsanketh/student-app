@@ -1,0 +1,33 @@
+pipeline {
+    agent {label "QA"}
+    stages {
+        stage('checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM'
+                    branches: [[name: '*/main']],
+                    userremoteconfigs : [
+                        url: "https://github.com/rbsanketh/student-app.git",
+                        credentialsId: 'github-pass'
+                    ]
+                ])
+            }
+        }
+        stage('Build'){
+            stages{
+                sh 'mvn clean install'
+            }
+        }
+        stage("Test"){
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy to Artifactory') {
+            steps {
+                sh 'mvn deploy'
+            }
+        }
+
+    }
+}
