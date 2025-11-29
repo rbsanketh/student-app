@@ -9,7 +9,7 @@ pipeline {
                          userRemoteConfigs: [
                                 url: 'https://github.com/rbsanketh/student-app.git',
                                 credentialsId: 'github-pass'
-                         ]
+                         ]
                 ])
              }
         }
@@ -34,3 +34,4 @@ pipeline {
 
     }
 }
+
