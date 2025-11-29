@@ -5,7 +5,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM'
-                    branches: [[name: '*/main']],
+                    branches: ([name: '*/main']),
                     userremoteconfigs : [
                         url: "https://github.com/rbsanketh/student-app.git",
                         credentialsId: 'github-pass'
@@ -34,3 +34,4 @@ pipeline {
 
     }
 }
+
