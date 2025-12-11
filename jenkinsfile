@@ -10,7 +10,7 @@ pipeline {
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
                         url: 'https://github.com/rbsanketh/student-app.git',
-                        credentialsId: 'github_pass'
+                        credentialsId: 'rbsanketh'
                     ]]
                 ])
             }
@@ -37,6 +37,7 @@ pipeline {
         }
     }
 }
+
 
 
 
