@@ -30,13 +30,14 @@ pipeline {
 
         stage('Deploy to Artifactory') {
             steps {
-                configFileProvider([configFile(fileId: "http://16.171.152.236:8081/artifactory", variable: "MAVEN_SETTINGS")]) {
+                configFileProvider([configFile(fileId: "41ac8627-466a-4919-99be-71c026f4b948", variable: "MAVEN_SETTINGS")]) {
                     sh 'mvn deploy -s $MAVEN_SETTINGS'
                 }
             }
         }
     }
 }
+
 
 
 
