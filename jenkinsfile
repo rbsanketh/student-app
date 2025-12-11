@@ -1,5 +1,5 @@
 pipeline {
-    agent { label "QA-server" }
+    agent { label "QA" }
 
     stages {
 
@@ -9,7 +9,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
-                        url: 'git-url link',
+                        url: 'https://github.com/rbsanketh/student-app.git',
                         credentialsId: 'github_pass'
                     ]]
                 ])
@@ -37,3 +37,4 @@ pipeline {
         }
     }
 }
+
