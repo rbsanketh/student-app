@@ -1,38 +1,39 @@
 pipeline {
-    agent {label "QA"}
+    agent { label "QA-server" }
+
     stages {
+
         stage('checkout') {
             steps {
                 checkout([
-                         $class: 'GitSCM',
-                         branches: [[name: '*/main']],
-                         userRemoteConfigs: [
-                                url: 'https://github.com/rbsanketh/student-app.git',
-                                credentialsId: 'github-pass'
-                         ]
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'git-url link',
+                        credentialsId: 'github_pass'
+                    ]]
                 ])
-             }
+            }
         }
-        stage('Build'){
+
+        stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
         }
-        stage("Test"){
+
+        stage('Test') {
             steps {
-                sh 'mvn test'
+                sh "mvn test"
             }
         }
+
         stage('Deploy to Artifactory') {
             steps {
-                configFileProvider([configFile(fileID: "41ac8627-466a-4919-99be-71c026f4b948", variable: 'MAVEN_SETTINGS')]) {
+                configFileProvider([configFile(fileId: "9e898577-98ab-4a24-a8b1-b4d94c62d453", variable: "MAVEN_SETTINGS")]) {
                     sh 'mvn deploy -s $MAVEN_SETTINGS'
                 }
-                
             }
         }
-
     }
 }
-
-
